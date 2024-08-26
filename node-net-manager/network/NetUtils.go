@@ -43,10 +43,12 @@ func GetLocalIPandIface() (string, string) {
 					log.Println("Local Interface ", iface.Name, " with addr ", ipnet.IP.String(), " skipped")
 				}
 				// TODO DISCUSS: Should we first check for IPv6 on the interface first and fallback to v4?
-				if ipnet.IP.To4() != nil {
-					log.Println("Local Interface in use: ", iface.Name, " with addr ", ipnet.IP.String())
-					return ipnet.IP.String(), iface.Name
-				}
+				/*
+					if ipnet.IP.To4() != nil {
+						log.Println("Local Interface in use: ", iface.Name, " with addr ", ipnet.IP.String())
+						return ipnet.IP.String(), iface.Name
+					}
+				*/
 			}
 		}
 	}
