@@ -93,7 +93,7 @@ func (packet *IPv6Packet) GetTransportLayer() TransportLayerProtocol {
 		}
 		return tcp
 	default:
-		logger.ErrorLogger().Println("Could not determine TransportLayer of IPv6 Packet.")
+		logger.ErrorLogger().Println("Could not determine TransportLayer of IPv6 Packet. NextHeader: ", packet.IPv6.NextHeader)
 		return nil
 	}
 }

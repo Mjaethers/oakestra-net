@@ -27,20 +27,18 @@ func GetLocalIPandIface() (string, string) {
 	}
 
 	for _, iface := range list {
-		log.Println("Iterating on iface")
 		addrs, err := iface.Addrs()
 		if err != nil {
 			panic(err)
 		}
 		for _, address := range addrs {
-			log.Println("Iterating on address")
 			// check the address type and if it is not a loopback the display it
 			if ipnet, ok := address.(*net.IPNet); ok && !ipnet.IP.IsLoopback() && iface.Name == (*defaultIfce).Attrs().Name {
 				if ipnet.IP.To4() == nil {
 					log.Println("IPv6 Interface in use: ", iface.Name, " with addr ", ipnet.IP.String())
 					return ipnet.IP.String(), iface.Name
 				} else {
-					log.Println("Local Interface ", iface.Name, " with addr ", ipnet.IP.String(), " skipped")
+					log.Println("IPv4 Interface ", iface.Name, " with addr ", ipnet.IP.String(), " found. Checking for IPv6 Interface")
 				}
 				// TODO DISCUSS: Should we first check for IPv6 on the interface first and fallback to v4?
 				/*
