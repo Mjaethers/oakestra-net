@@ -55,7 +55,7 @@ func RequestSubnetworkMqttBlocking() (mqttSubnetworkResponse, error) {
 		if result.Address != "" || result.Address_v6 != "" {
 			return result, nil
 		}
-	case <-time.After(10 * time.Second):
+	case <-time.After(100 * time.Second):
 		log.Printf("TIMEOUT - Table query without response, quitting goroutine")
 	}
 
