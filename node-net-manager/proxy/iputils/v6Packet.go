@@ -54,7 +54,6 @@ func (packet *IPv6Packet) DecodeNetworkLayer(gop gopacket.Packet) {
 		ipv6FragmentFields = ipv6Fragment.(*layers.IPv6Fragment)
 	}
 	packet.IPv6Fragment = ipv6FragmentFields
-
 }
 
 func (packet *IPv6Packet) Defragment() error {
