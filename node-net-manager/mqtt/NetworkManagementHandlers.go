@@ -29,6 +29,7 @@ type mqttDeployNotification struct {
 }
 
 func subnetworkAssignmentMqttHandler(_ mqtt.Client, msg mqtt.Message) {
+	log.Println("subnetworkAssignmentMqttHandler received ", string(msg.Payload()))
 	responseStruct := mqttSubnetworkResponse{}
 	err := json.Unmarshal(msg.Payload(), &responseStruct)
 	if err != nil {
